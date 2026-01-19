@@ -1,85 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installing AUR Packages: Guide</title>
-</head>
-<body>
-    <header>
-        <h1>Installing AUR Packages</h1>
-        <p>A guide on using <strong>yay</strong> and <strong>paru</strong> to manage packages from the Arch User Repository (AUR) in 2026.</p>
-    </header>
+<div style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white; padding: 40px; font-family: 'Segoe UI', sans-serif; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+    <h1 style="color: #00d2ff; text-shadow: 0 0 10px #00d2ff;">Installing AUR Packages</h1>
+    <p style="opacity: 0.8;">The definitive 2026 guide to <strong>yay</strong> and <strong>paru</strong>.</p>
+    
+    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin: 20px 0;">
+        <h2 style="color: #9d50bb;">Step 1: Bootstrap</h2>
+        <code style="background: #000; padding: 10px; display: block; border-radius: 5px; color: #50fa7b;">sudo pacman -Syu base-devel git</code>
+    </div>
 
-    <section id="prerequisites">
-        <h2>Prerequisites</h2>
-        <p>Before installing an AUR helper, ensure your system is updated and has the necessary build tools:</p>
-        <code>sudo pacman -Syu base-devel git</code>
-    </section>
-
-    <section id="installing-helpers">
-        <h2>1. Installing the Helpers</h2>
-        <p>Since AUR helpers are not in the official repositories, they must be built manually first.</p>
-        
-        <h3>Option A: Installing yay</h3>
-        <pre>
-git clone https://aur.archlinux.org
-cd yay
-makepkg -si</pre>
-
-        <h3>Option B: Installing paru</h3>
-        <pre>
-git clone https://aur.archlinux.org
-cd paru
-makepkg -si</pre>
-    </section>
-
-    <section id="usage">
-        <h2>2. How to Use yay and paru</h2>
-        <p>Both helpers use syntax nearly identical to <code>pacman</code>. Replace <code>yay</code> with <code>paru</code> depending on your preference.</p>
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Action</th>
-                    <th>Command</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Search for a package</td>
-                    <td><code>yay -Ss [package_name]</code></td>
-                </tr>
-                <tr>
-                    <td>Install a package</td>
-                    <td><code>yay -S [package_name]</code></td>
-                </tr>
-                <tr>
-                    <td>Update all packages (System + AUR)</td>
-                    <td><code>yay</code> or <code>yay -Syu</code></td>
-                </tr>
-                <tr>
-                    <td>Remove a package</td>
-                    <td><code>yay -R [package_name]</code></td>
-                </tr>
-                <tr>
-                    <td>Clean unneeded dependencies</td>
-                    <td><code>yay -Yc</code></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="key-differences">
-        <h2>3. Which one should I use?</h2>
-        <ul>
-            <li><strong>yay (Yet Another Yaourt):</strong> Written in Go. It is the most popular AUR helper and focuses on a simple, user-friendly interface.</li>
-            <li><strong>paru:</strong> Written in Rust. It is developed by a co-maintainer of <code>yay</code> and offers more advanced features like integrated PKGBUILD reviewing.</li>
-        </ul>
-    </section>
-
-    <footer>
-        <p>For more information, visit the official <a href="https://wiki.archlinux.org">Arch Wiki AUR page</a>.</p>
-    </footer>
-</body>
-</html>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="background: rgba(0,210,255,0.1); padding: 20px; border-radius: 15px; border-left: 5px solid #00d2ff;">
+            <h3>Option: Yay (Go)</h3>
+            <p>Fast and reliable.</p>
+            <code>git clone https://aur.archlinux.org && cd yay && makepkg -si</code>
+        </div>
+        <div style="background: rgba(157,80,187,0.1); padding: 20px; border-radius: 15px; border-left: 5px solid #9d50bb;">
+            <h3>Option: Paru (Rust)</h3>
+            <p>Modern and feature-rich.</p>
+            <code>git clone https://aur.archlinux.org && cd paru && makepkg -si</code>
+        </div>
+    </div>
+</div>

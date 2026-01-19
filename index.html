@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUR - Horizon User Repository</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🌅 HUR</h1>
+                <span class="tagline">Horizon User Repository</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#guides">Guides</a></li>
+                <li><a href="#contribute">Contribute</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="hero-title">Horizon User Repository</h1>
+            <p class="hero-subtitle">Community-driven packages and resources for HorizonOS</p>
+            <div class="hero-buttons">
+                <a href="#packages" class="btn btn-primary">Browse Packages</a>
+                <a href="https://github.com/yourusername/hur" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="stat-card">
+                <h3 id="package-count">0</h3>
+                <p>Packages</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="contributor-count">0</h3>
+                <p>Contributors</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="download-count">0</h3>
+                <p>Downloads</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages" class="packages">
+        <div class="container">
+            <h2>Featured Packages</h2>
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search packages...">
+            </div>
+            <div class="package-grid" id="package-list">
+                <!-- Packages will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="guides">
+        <div class="container">
+            <h2>Community Guides</h2>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h3>Getting Started with HorizonOS</h3>
+                    <p>Learn the basics of HorizonOS and set up your system.</p>
+                    <a href="guides/getting-started.html" class="btn btn-sm">Read Guide →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>Installing AUR Packages</h3>
+                    <p>How to use yay and paru to install packages from AUR.</p>
+                    <a href="guides/aur-guide.html" class="btn btn-sm">Read Guide →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>Customizing Plasma</h3>
+                    <p>Make KDE Plasma look amazing with themes and widgets.</p>
+                    <a href="guides/plasma-customization.html" class="btn btn-sm">Read Guide →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>Hyprland Setup</h3>
+                    <p>Configure Hyprland with end4 dotfiles and more.</p>
+                    <a href="guides/hyprland-setup.html" class="btn btn-sm">Read Guide →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contribute" class="contribute">
+        <div class="container">
+            <h2>Contribute to HUR</h2>
+            <p>Help grow the HorizonOS community by contributing packages, guides, or code!</p>
+            <div class="contribute-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Fork the Repository</h3>
+                    <p>Fork HUR on GitHub to start contributing</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add Your Package</h3>
+                    <p>Create a PKGBUILD and add it to the repo</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Submit Pull Request</h3>
+                    <p>Open a PR and we'll review your contribution</p>
+                </div>
+            </div>
+            <a href="https://github.com/yourusername/hur" class="btn btn-primary">Start Contributing</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community. Built with ❤️ for Arch users.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername/hur">GitHub</a>
+                <a href="#">Discord</a>
+                <a href="#">Wiki</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

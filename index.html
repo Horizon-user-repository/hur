@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUR - Horizon User Repository | 2026 Edition</title>
+    <title>HUR - Horizon User Repository</title>
     <!-- Modern Font Inter -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
@@ -87,29 +87,11 @@
     <header class="hero">
         <div class="container">
             <h1 class="hero-title">Horizon User Repository</h1>
-            <p>The Ultimate 2026 Resource for HorizonOS & Arch Customization.</p>
+            <p>The Ultimate Resource for HorizonOS & Arch Linux</p>
             <br>
             <a href="#wiki" class="btn btn-primary">Enter The Wiki</a>
         </div>
     </header>
-
-    <!-- LIVE COUNTERS -->
-    <section class="container">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3 id="repo-stars">...</h3>
-                <p>GitHub Stars</p>
-            </div>
-            <div class="stat-card">
-                <h3 id="pkg-count">1,240</h3>
-                <p>Packages</p>
-            </div>
-            <div class="stat-card">
-                <h3 id="community-size">5.2k</h3>
-                <p>Users</p>
-            </div>
-        </div>
-    </section>
 
     <!-- THE WIKI & DOCS SECTION -->
     <section id="wiki" class="container grid-layout">
@@ -126,10 +108,10 @@
             <h2 id="wiki-arch">Arch Linux: The Breakdown</h2>
             <p>Arch Linux is not just an OS; it's a <strong>component set</strong>. To modify it, you must understand the four pillars:</p>
             <ol>
-                <li><strong>The Bootloader:</strong> GRUB or Systemd-boot. This is where your customization starts.</li>
+                <li><strong>The Bootloader:</strong> GRUB, Systemd-boot, etc. This is where your customization starts.</li>
                 <li><strong>The Kernel:</strong> The bridge between hardware and software.</li>
                 <li><strong>The Shell:</strong> Zsh, Fish, or Bash.</li>
-                <li><strong>The Display Server:</strong> Wayland (Recommended for 2026) or X11.</li>
+                <li><strong>The Display Server:</strong> Wayland (Recommended) or X11.</li>
             </ol>
 
             <h2 id="wiki-distro">Building Your Own Distro</h2>
@@ -140,35 +122,8 @@
 sudo pacman -S archiso
 cp -r /usr/share/archiso/configs/releng/ ./my-distro
 # Modify packages.x86_64 to include your AUR helpers
-./build.sh -v</code></pre>
+sudo mkarchiso -v .</code></pre>
         </article>
-    </section>
-
-    <!-- SUPPORT HUB -->
-    <section id="support" class="support-hub">
-        <div class="container">
-            <h2 style="text-align: center;">Community Support Hub</h2>
-            <p style="text-align: center; opacity: 0.7;">Have a question? Ask the community below. Real-time support powered by GitHub Discussions.</p>
-            
-            <!-- GISCUS COMMENT SYSTEM (REPLACES MANUAL FORUMS) -->
-            <div id="comments-container" style="background: var(--glass); padding: 20px; border-radius: 20px;">
-                <script src="https://giscus.app"
-                    data-repo="[YOUR_GITHUB_REPO]"
-                    data-repo-id="[YOUR_REPO_ID]"
-                    data-category="Announcements"
-                    data-category-id="[YOUR_CAT_ID]"
-                    data-mapping="pathname"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="bottom"
-                    data-theme="dark"
-                    data-lang="en"
-                    crossorigin="anonymous"
-                    async>
-                </script>
-            </div>
-        </div>
     </section>
 
     <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--glass);">
@@ -176,28 +131,4 @@ cp -r /usr/share/archiso/configs/releng/ ./my-distro
     </footer>
 
     <script>
-        // REAL-TIME GITHUB COUNTER SCRIPT
-        async function fetchStats() {
-            try {
-                // Replace 'archlinux' with your actual repo name
-                const response = await fetch('https://api.github.com');
-                const data = await response.json();
-                document.getElementById('repo-stars').innerText = data.stargazers_count;
-            } catch (error) {
-                document.getElementById('repo-stars').innerText = "5k+";
-            }
-        }
-        fetchStats();
-
-        // Smooth Scroll Logic
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+      

@@ -1,4 +1,3 @@
-HEAD
 # HUR - Horizon User Repository
 
 🌅 Community-driven packages and resources for HorizonOS
@@ -54,4 +53,3 @@ MIT License - See [LICENSE](LICENSE) for details
 =======
 # hur
 The HUR is the Horizon-user-repository for HorizonOS
-c27d8a84589c7e00cef72a50ede2fd0ccf40f176

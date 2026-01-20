@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package List - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+    <style>
+        .filter-controls {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .package-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+        }
+
+        .package-table thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .package-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .package-table th:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .package-table th.sortable::after {
+            content: ' ⇅';
+            opacity: 0.5;
+        }
+
+        .package-table th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+
+        .package-table th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+
+        .package-table tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .package-table tbody tr:hover {
+            background: var(--light);
+        }
+
+        .package-table td {
+            padding: 1rem;
+        }
+
+        .package-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .package-repo {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .repo-hur {
+            background: #667eea;
+            color: white;
+        }
+
+        .repo-aur {
+            background: #0088cc;
+            color: white;
+        }
+
+        .repo-arch {
+            background: #1793d1;
+            color: white;
+        }
+
+        .package-tags {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .install-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .install-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="first-steps.html">First Steps</a></li>
+                </ul>
+
+                <h3>Packages</h3>
+                <ul>
+                    <li><a href="packages.html" style="background: var(--light); color: var(--primary);">Package List</a></li>
+                    <li><a href="package-management.html">Package Management</a></li>
+                    <li><a href="aur.html">Using the AUR</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Package List</h1>
+            
+            <p>Browse all available packages for HorizonOS from HUR, AUR, and official Arch repositories.</p>
+
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-number" id="total-packages">0</div>
+                    <div class="stat-label">Total Packages</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="hur-packages">0</div>
+                    <div class="stat-label">HUR Packages</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="aur-packages">0</div>
+                    <div class="stat-label">AUR Packages</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="arch-packages">0</div>
+                    <div class="stat-label">Arch Packages</div>
+                </div>
+            </div>
+
+            <div class="filter-controls">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="search-input">Search</label>
+                        <input type="text" id="search-input" placeholder="Search by name or description...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="repo-filter">Repository</label>
+                        <select id="repo-filter">
+                            <option value="all">All Repositories</option>
+                            <option value="hur">HUR Only</option>
+                            <option value="aur">AUR Only</option>
+                            <option value="arch">Arch Official</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Category</label>
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="themes">Themes</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="development">Development</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="multimedia">Multimedia</option>
+                            <option value="customization">Customization</option>
+                            <option value="system">System</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="tag-filter">Filter by Tag</label>
+                        <select id="tag-filter">
+                            <option value="all">All Tags</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <table class="package-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-sort="name">Package Name</th>
+                        <th class="sortable" data-sort="repo">Repository</th>
+                        <th class="sortable" data-sort="version">Version</th>
+                        <th>Description</th>
+                        <th>Tags</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="package-tbody">
+                    <!-- Packages will be loaded here -->
+                </tbody>
+            </table>
+
+            <div class="no-results" id="no-results" style="display: none;">
+                <h3>No packages found</h3>
+                <p>Try adjusting your filters or search terms.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Install Modal -->
+    <div class="modal" id="install-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <h3>Installation Command:</h3>
+            <pre><code id="modal-command"></code></pre>
+            <div style="margin-top: 1rem;">
+                <button class="install-btn" onclick="copyCommand()">Copy Command</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/packages.js"></script>
+</body>
+</html>

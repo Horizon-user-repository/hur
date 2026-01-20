@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="installation.html" style="background: var(--light); color: var(--primary);">Installation Guide</a></li>
+                    <li><a href="first-steps.html">First Steps</a></li>
+                    <li><a href="desktop-environments.html">Desktop Environments</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Installation Guide</h1>
+            
+            <p>This guide will walk you through installing HorizonOS on your computer.</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Before You Begin</strong>
+                <p>Installation will erase all data on the selected disk. Make sure to back up important files before proceeding.</p>
+            </div>
+
+            <h2>Prerequisites</h2>
+            <ul>
+                <li>HorizonOS ISO file (download from official website)</li>
+                <li>USB drive (4GB or larger)</li>
+                <li>Computer with UEFI/BIOS boot support</li>
+                <li>Internet connection (recommended)</li>
+            </ul>
+
+            <h2>Step 1: Create Bootable USB</h2>
+            <p>Use one of these tools to create a bootable USB:</p>
+
+            <h3>On Linux:</h3>
+            <pre><code>sudo dd if=horizonos.iso of=/dev/sdX bs=4M status=progress && sync</code></pre>
+
+            <h3>On Windows:</h3>
+            <p>Use <a href="https://rufus.ie/">Rufus</a> or <a href="https://www.balena.io/etcher/">Etcher</a></p>
+
+            <h2>Step 2: Boot from USB</h2>
+            <ol>
+                <li>Insert the USB drive into your computer</li>
+                <li>Restart your computer</li>
+                <li>Press the boot menu key (usually F12, F2, or DEL)</li>
+                <li>Select the USB drive from the boot menu</li>
+            </ol>
+
+            <h2>Step 3: Start Installation</h2>
+            <p>HorizonOS will boot into a live environment with Fenix installer. The installer will launch automatically in Firefox.</p>
+
+            <h3>Choose Installation Disk</h3>
+            <p>Select the disk where you want to install HorizonOS. <strong>All data on this disk will be erased.</strong></p>
+
+            <h3>Create User Account</h3>
+            <ul>
+                <li>Enter your username</li>
+                <li>Set a strong password</li>
+                <li>Choose a hostname for your computer</li>
+            </ul>
+
+            <h3>Select Desktop Environment</h3>
+            <ul>
+                <li><strong>KDE Plasma:</strong> Full-featured desktop with extensive customization</li>
+                <li><strong>Hyprland:</strong> Tiling window manager for advanced users</li>
+            </ul>
+
+            <h2>Step 4: Wait for Installation</h2>
+            <p>The installation process takes 10-15 minutes depending on your internet speed. Do not turn off your computer during installation.</p>
+
+            <h2>Step 5: Reboot</h2>
+            <p>Once installation is complete, remove the USB drive and reboot your computer.</p>
+
+            <h2>Post-Installation</h2>
+            <p>After rebooting, you'll be greeted with the HorizonOS Welcome app where you can:</p>
+            <ul>
+                <li>Install additional software</li>
+                <li>Configure system settings</li>
+                <li>Install AUR helpers (yay, paru)</li>
+                <li>Set up gaming tools</li>
+                <li>And much more!</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>📚 Next Steps</strong>
+                <p>Check out the <a href="first-steps.html">First Steps</a> guide to learn how to customize and optimize your new HorizonOS installation.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+</body>
+</html>

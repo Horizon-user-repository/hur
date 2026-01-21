@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="installation.html" style="background: var(--light); color: var(--primary);">Installation Guide</a></li>
+                    <li><a href="first-steps.html">First Steps</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Installation Guide</h1>
+            
+            <p>This guide will walk you through installing HorizonOS on your computer.</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Before You Begin</strong>
+                <p>Installation will erase all data on the selected disk. Make sure to back up important files.</p>
+            </div>
+
+            <h2>Prerequisites</h2>
+            <ul>
+                <li>HorizonOS ISO file</li>
+                <li>USB drive (4GB or larger)</li>
+                <li>Computer with UEFI/BIOS boot support</li>
+                <li>Internet connection (recommended)</li>
+            </ul>
+
+            <h2>Step 1: Create Bootable USB</h2>
+            <h3>On Linux:</h3>
+            <pre><code>sudo dd if=horizonos.iso of=/dev/sdX bs=4M status=progress && sync</code></pre>
+
+            <h3>On Windows:</h3>
+            <p>Use <a href="https://rufus.ie/">Rufus</a> or <a href="https://www.balena.io/etcher/">Etcher</a></p>
+
+            <h2>Step 2: Boot from USB</h2>
+            <ol>
+                <li>Insert the USB drive</li>
+                <li>Restart your computer</li>
+                <li>Press the boot menu key (usually F12, F2, or DEL)</li>
+                <li>Select the USB drive</li>
+            </ol>
+
+            <h2>Step 3: Start Installation</h2>
+            <p>HorizonOS will boot into Fenix installer automatically.</p>
+
+            <h3>Installation Steps:</h3>
+            <ol>
+                <li>Select installation disk</li>
+                <li>Choose swap size</li>
+                <li>Create user account</li>
+                <li>Select desktop environment (Plasma or Hyprland)</li>
+                <li>Confirm and install</li>
+            </ol>
+
+            <h2>Step 4: Reboot</h2>
+            <p>Remove the USB drive and reboot.</p>
+
+            <div class="info-box">
+                <strong>📚 Next Steps</strong>
+                <p>Check out the <a href="first-steps.html">First Steps</a> guide after installation.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+</body>
+</html>

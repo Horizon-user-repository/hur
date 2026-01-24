@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Management - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>System</h3>
+                <ul>
+                    <li><a href="package-management.html" style="background: var(--light); color: var(--primary);">Package Management</a></li>
+                    <li><a href="aur.html">Using the AUR</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Package Management with Pacman</h1>
+            
+            <p>HorizonOS uses <code>pacman</code> as its package manager. This guide covers essential package management tasks.</p>
+
+            <h2>Basic Pacman Commands</h2>
+
+            <h3>Update System</h3>
+            <pre><code># Update package database and upgrade all packages
+sudo pacman -Syu
+
+# Update database only
+sudo pacman -Sy</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important</strong>
+                <p>Always run <code>pacman -Syu</code> before installing new packages to avoid partial upgrades.</p>
+            </div>
+
+            <h3>Install Packages</h3>
+            <pre><code># Install a single package
+sudo pacman -S package-name
+
+# Install multiple packages
+sudo pacman -S package1 package2 package3
+
+# Install a package without prompting
+sudo pacman -S --noconfirm package-name</code></pre>
+
+            <h3>Remove Packages</h3>
+            <pre><code># Remove a package
+sudo pacman -R package-name
+
+# Remove a package and its dependencies
+sudo pacman -Rs package-name
+
+# Remove a package, dependencies, and config files
+sudo pacman -Rns package-name</code></pre>
+
+            <h3>Search for Packages</h3>
+            <pre><code># Search for a package
+pacman -Ss search-term
+
+# Search installed packages
+pacman -Qs search-term</code></pre>
+
+            <h3>Package Information</h3>
+            <pre><code># Show package information
+pacman -Si package-name
+
+# Show info for installed package
+pacman -Qi package-name
+
+# List files owned by a package
+pacman -Ql package-name
+
+# Find which package owns a file
+pacman -Qo /path/to/file</code></pre>
+
+            <h2>System Maintenance</h2>
+
+            <h3>List Orphaned Packages</h3>
+            <p>Orphaned packages are dependencies that are no longer needed:</p>
+            <pre><code># List orphaned packages
+pacman -Qtdq
+
+# Remove all orphaned packages
+sudo pacman -Rns $(pacman -Qtdq)</code></pre>
+
+            <h3>Clean Package Cache</h3>
+            <p>Pacman stores downloaded packages in <code>/var/cache/pacman/pkg/</code>:</p>
+            <pre><code># Remove old versions of installed packages
+sudo pacman -Sc
+
+# Remove all cached packages
+sudo pacman -Scc</code></pre>
+
+            <h3>Check for Errors</h3>
+            <pre><code># Check for missing dependencies
+sudo pacman -Dk
+
+# Verify all packages
+sudo pacman -Qkk</code></pre>
+
+            <h2>Working with Package Groups</h2>
+            <pre><code># List all groups
+pacman -Sg
+
+# List packages in a group
+pacman -Sg group-name
+
+# Install an entire group
+sudo pacman -S group-name</code></pre>
+
+            <h2>Downgrading Packages</h2>
+            <p>If a package update causes issues, you can downgrade:</p>
+            <pre><code># List available versions in cache
+ls /var/cache/pacman/pkg/ | grep package-name
+
+# Install specific version
+sudo pacman -U /var/cache/pacman/pkg/package-name-version.pkg.tar.zst</code></pre>
+
+            <h2>Ignoring Packages</h2>
+            <p>To prevent certain packages from being updated, edit <code>/etc/pacman.conf</code>:</p>
+            <pre><code># Add to /etc/pacman.conf
+IgnorePkg = package-name package-name2</code></pre>
+
+            <h2>Updating Mirrors</h2>
+            <p>Update your mirror list for faster downloads:</p>
+            <pre><code># Install reflector
+sudo pacman -S reflector
+
+# Update mirrors
+sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+# Refresh database
+sudo pacman -Syy</code></pre>
+
+            <h2>Parallel Downloads</h2>
+            <p>Speed up package downloads by enabling parallel downloads. Edit <code>/etc/pacman.conf</code>:</p>
+            <pre><code>ParallelDownloads = 5</code></pre>
+
+            <h2>Useful Pacman Flags</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.5rem; text-align: left;">Flag</th>
+                        <th style="padding: 0.5rem; text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-S</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Sync (install)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-R</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Remove</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-Q</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Query</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-U</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Upgrade from file</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-y</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Refresh database</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-u</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">System upgrade</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-s</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Search</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;"><code>-c</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Clean cache</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>📚 Next Steps</strong>
+                <p>Learn about the <a href="aur.html">AUR (Arch User Repository)</a> to access thousands of additional packages.</p>
+            </div>
+
+            <h2>Troubleshooting</h2>
+
+            <h3>Package Conflicts</h3>
+            <p>If you encounter package conflicts:</p>
+            <pre><code># Remove conflicting package first
+sudo pacman -R conflicting-package
+sudo pacman -S new-package</code></pre>
+
+            <h3>Corrupted Database</h3>
+            <pre><code># Refresh database
+sudo rm /var/lib/pacman/sync/*
+sudo pacman -Syy</code></pre>
+
+            <h3>Failed Transaction</h3>
+            <pre><code># Remove lock file if pacman crashed
+sudo rm /var/lib/pacman/db.lck</code></pre>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+</body>
+</html>

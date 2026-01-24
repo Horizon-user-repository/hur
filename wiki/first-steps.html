@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Steps - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="first-steps.html" style="background: var(--light); color: var(--primary);">First Steps</a></li>
+                </ul>
+                <h3>System</h3>
+                <ul>
+                    <li><a href="package-management.html">Package Management</a></li>
+                    <li><a href="aur.html">Using the AUR</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>First Steps After Installation</h1>
+            
+            <p>Congratulations on installing HorizonOS! This guide will help you get started with your new system.</p>
+
+            <h2>1. Update Your System</h2>
+            <p>First, make sure all packages are up to date:</p>
+            <pre><code>sudo pacman -Syu</code></pre>
+
+            <h2>2. Use HorizonOS Welcome</h2>
+            <p>The HorizonOS Welcome app should launch automatically on first boot. If not, you can open it from the application menu or run:</p>
+            <pre><code>horizonos-welcome</code></pre>
+
+            <p>The Welcome app allows you to:</p>
+            <ul>
+                <li>Install AUR helpers (yay or paru)</li>
+                <li>Install gaming tools</li>
+                <li>Install development tools</li>
+                <li>Set up CachyOS BORE kernel</li>
+                <li>Configure system optimizations</li>
+            </ul>
+
+            <h2>3. Set Up WiFi (if needed)</h2>
+            <p>Click the network icon in the system tray to connect to WiFi networks.</p>
+
+            <p>Or use the command line:</p>
+            <pre><code># List available networks
+nmcli device wifi list
+
+# Connect to a network
+nmcli device wifi connect "NETWORK_NAME" password "PASSWORD"</code></pre>
+
+            <h2>4. Install an AUR Helper</h2>
+            <p>AUR helpers make it easier to install packages from the Arch User Repository.</p>
+
+            <h3>Install yay:</h3>
+            <pre><code>cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si</code></pre>
+
+            <h3>Install paru:</h3>
+            <pre><code>cd /tmp
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si</code></pre>
+
+            <h2>5. Add HUR Repository</h2>
+            <p>Add the Horizon User Repository to access HorizonOS-specific packages:</p>
+            <pre><code>echo "[hur]" | sudo tee -a /etc/pacman.conf
+echo "Server = https://Horizon-user-repository.github.io/hur/repo/\$arch" | sudo tee -a /etc/pacman.conf
+sudo pacman -Sy</code></pre>
+
+            <h2>6. Customize Your Desktop</h2>
+            
+            <h3>For KDE Plasma:</h3>
+            <ul>
+                <li>Right-click on desktop → Configure Desktop and Wallpaper</li>
+                <li>Right-click on panel → Enter Edit Mode to customize</li>
+                <li>System Settings → Appearance to change themes</li>
+            </ul>
+
+            <h3>For Hyprland:</h3>
+            <p>If you selected Hyprland during installation, the end4 dotfiles should already be installed. Edit configuration at:</p>
+            <pre><code>~/.config/hypr/hyprland.conf</code></pre>
+
+            <h2>7. Install Common Applications</h2>
+            
+            <h3>Web Browsers:</h3>
+            <pre><code>sudo pacman -S firefox chromium</code></pre>
+
+            <h3>Office Suite:</h3>
+            <pre><code>sudo pacman -S libreoffice-fresh</code></pre>
+
+            <h3>Media Players:</h3>
+            <pre><code>sudo pacman -S vlc mpv</code></pre>
+
+            <h3>Graphics Editing:</h3>
+            <pre><code>sudo pacman -S gimp inkscape</code></pre>
+
+            <h2>8. Enable Firewall (Optional)</h2>
+            <pre><code>sudo pacman -S ufw
+sudo systemctl enable ufw
+sudo systemctl start ufw
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing</code></pre>
+
+            <h2>9. Set Up Automatic Updates (Optional)</h2>
+            <p>To check for updates weekly:</p>
+            <pre><code>sudo pacman -S pacman-contrib
+sudo systemctl enable paccache.timer
+sudo systemctl start paccache.timer</code></pre>
+
+            <h2>10. Create System Snapshot (Recommended)</h2>
+            <p>Install Timeshift for system backups:</p>
+            <pre><code>sudo pacman -S timeshift
+sudo timeshift --create --comments "Fresh HorizonOS install"</code></pre>
+
+            <div class="info-box">
+                <strong>🎉 You're All Set!</strong>
+                <p>Your HorizonOS system is now ready to use. Check out the <a href="package-management.html">Package Management</a> guide to learn more about managing software.</p>
+            </div>
+
+            <h2>Useful Resources</h2>
+            <ul class="article-list">
+                <li><a href="package-management.html">Package Management</a> - Learn to use pacman</li>
+                <li><a href="aur.html">Using the AUR</a> - Access thousands of additional packages</li>
+                <li><a href="https://wiki.archlinux.org/">Arch Wiki</a> - Comprehensive Arch Linux documentation</li>
+            </ul>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+</body>
+</html>

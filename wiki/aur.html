@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the AUR - HorizonOS Wiki</title>
+    <link rel="stylesheet" href="../assets/css/wiki.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>📚 HorizonOS Wiki</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">← Back to HUR</a></li>
+                <li><a href="index.html">Wiki Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wiki-container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search wiki...">
+            </div>
+            <nav class="wiki-nav">
+                <h3>System</h3>
+                <ul>
+                    <li><a href="package-management.html">Package Management</a></li>
+                    <li><a href="aur.html" style="background: var(--light); color: var(--primary);">Using the AUR</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Using the AUR (Arch User Repository)</h1>
+            
+            <p>The AUR is a community-driven repository containing thousands of packages not in the official Arch repositories.</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Important</strong>
+                <p>AUR packages are user-produced content. Always review PKGBUILDs before installing to ensure they're safe.</p>
+            </div>
+
+            <h2>What is the AUR?</h2>
+            <p>The Arch User Repository (AUR) is a community repository where users can submit and maintain packages. It contains:</p>
+            <ul>
+                <li>Software not in official repositories</li>
+                <li>Beta/development versions of software</li>
+                <li>Niche or specialized applications</li>
+                <li>Proprietary software</li>
+            </ul>
+
+            <h2>Installing AUR Helpers</h2>
+            <p>AUR helpers automate the process of building and installing AUR packages.</p>
+
+            <h3>Option 1: yay (Recommended)</h3>
+            <pre><code># Install dependencies
+sudo pacman -S --needed base-devel git
+
+# Clone and build yay
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+# Verify installation
+yay --version</code></pre>
+
+            <h3>Option 2: paru</h3>
+            <pre><code># Install dependencies
+sudo pacman -S --needed base-devel git rust
+
+# Clone and build paru
+cd /tmp
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+
+# Verify installation
+paru --version</code></pre>
+
+            <h2>Using yay</h2>
+
+            <h3>Search for Packages</h3>
+            <pre><code># Search AUR
+yay -Ss package-name
+
+# Search both official repos and AUR
+yay package-name</code></pre>
+
+            <h3>Install Packages</h3>
+            <pre><code># Install a package
+yay -S package-name
+
+# Install with no confirmations (use carefully)
+yay -S --noconfirm package-name</code></pre>
+
+            <h3>Update System</h3>
+            <pre><code># Update both official and AUR packages
+yay -Syu
+
+# Update only AUR packages
+yay -Sua</code></pre>
+
+            <h3>Remove Packages</h3>
+            <pre><code># Remove package
+yay -R package-name
+
+# Remove with dependencies
+yay -Rs package-name</code></pre>
+
+            <h3>Get Package Info</h3>
+            <pre><code># Show package information
+yay -Si package-name
+
+# Show installed package info
+yay -Qi package-name</code></pre>
+
+            <h3>Clean Build Cache</h3>
+            <pre><code># Clean unneeded dependencies
+yay -Yc</code></pre>
+
+            <h2>Using paru</h2>
+            <p>Paru commands are similar to yay:</p>
+            <pre><code># Search
+paru -Ss package-name
+
+# Install
+paru -S package-name
+
+# Update
+paru -Syu
+
+# Remove
+paru -R package-name</code></pre>
+
+            <h2>Manual Installation (Without AUR Helper)</h2>
+            <p>You can manually build AUR packages:</p>
+            <pre><code># 1. Clone the package repository
+git clone https://aur.archlinux.org/package-name.git
+cd package-name
+
+# 2. Review the PKGBUILD (IMPORTANT!)
+less PKGBUILD
+
+# 3. Build and install
+makepkg -si
+
+# 4. Clean up
+cd ..
+rm -rf package-name</code></pre>
+
+            <h2>Safety Tips</h2>
+
+            <div class="info-box">
+                <strong>🔒 Always Review PKGBUILDs</strong>
+                <p>Before installing any AUR package:</p>
+                <ol>
+                    <li>Read the PKGBUILD file</li>
+                    <li>Check comments on the AUR page</li>
+                    <li>Verify the source URLs</li>
+                    <li>Look for suspicious commands</li>
+                </ol>
+            </div>
+
+            <h3>Checking Package Safety</h3>
+            <pre><code># View PKGBUILD before installing
+yay -Gp package-name | less
+
+# View package comments
+yay -Si package-name</code></pre>
+
+            <h3>Red Flags to Watch For</h3>
+            <ul>
+                <li>Commands running as root unnecessarily</li>
+                <li>Downloads from untrusted sources</li>
+                <li>Unusual post-install scripts</li>
+                <li>No votes or comments on AUR page</li>
+                <li>Recently created packages with many features</li>
+            </ul>
+
+            <h2>Popular AUR Packages</h2>
+
+            <h3>Browsers</h3>
+            <pre><code>yay -S google-chrome
+yay -S brave-bin
+yay -S microsoft-edge-stable-bin</code></pre>
+
+            <h3>Development Tools</h3>
+            <pre><code>yay -S visual-studio-code-bin
+yay -S jetbrains-toolbox
+yay -S postman-bin</code></pre>
+
+            <h3>Communication</h3>
+            <pre><code>yay -S discord
+yay -S slack-desktop
+yay -S zoom</code></pre>
+
+            <h3>Media</h3>
+            <pre><code>yay -S spotify
+yay -S youtube-dl
+yay -S plex-media-server</code></pre>
+
+            <h2>Troubleshooting</h2>
+
+            <h3>Build Failures</h3>
+            <p>If a package fails to build:</p>
+            <pre><code># Update system first
+sudo pacman -Syu
+
+# Install missing dependencies
+sudo pacman -S base-devel
+
+# Clear build cache
+rm -rf ~/.cache/yay</code></pre>
+
+            <h3>GPG Key Errors</h3>
+            <pre><code># Import missing GPG key
+gpg --recv-keys KEY_ID
+
+# Or skip verification (not recommended)
+makepkg -si --skippgpcheck</code></pre>
+
+            <h3>Dependency Issues</h3>
+            <pre><code># Manually install dependencies
+yay -S dependency-name
+
+# Then try again
+yay -S package-name</code></pre>
+
+            <h2>AUR vs Official Repositories</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.5rem;">Feature</th>
+                        <th style="padding: 0.5rem;">Official Repos</th>
+                        <th style="padding: 0.5rem;">AUR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Maintained by</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Arch developers</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Community</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Installation</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Pre-built binaries</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Build from source</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Security</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Verified</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">User responsibility</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Speed</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Fast</td>
+                        <td style="padding: 0.5rem; border: 1px solid #ddd;">Slower (builds)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Always update your system before installing AUR packages</li>
+                <li>Read PKGBUILDs before installation</li>
+                <li>Check package popularity and comments</li>
+                <li>Use an AUR helper for convenience</li>
+                <li>Keep AUR packages updated</li>
+                <li>Report issues to package maintainers</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>📚 Learn More</strong>
+                <p>For more information, visit the <a href="https://wiki.archlinux.org/title/Arch_User_Repository">Arch Wiki AUR page</a>.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HorizonOS Community Wiki</p>
+        </div>
+    </footer>
+</body>
+</html>
